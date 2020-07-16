@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5", 
+    "module": "amd", 
+    "allowJs": true,    
+    "checkJs": true,         
+    "jsx": "react",   
+    "declaration": true,   
+    "declarationMap": true,            
+    "sourceMap": true,                  
+    "isolatedModules": true,
+    "strict": true,
+    "lib": ["ES2015"],
+    "moduleResolution": "node",
+    "outDir": "build"
+  }
+}

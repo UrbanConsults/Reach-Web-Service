@@ -267,6 +267,7 @@ impl MainWorker {
       ops::net::init(isolate, &state);
       ops::tls::init(isolate, &state);
       ops::os::init(isolate, &state);
+      ops::rws_server::init(isolate, &state);
       ops::permissions::init(isolate, &state);
       ops::process::init(isolate, &state);
       ops::random::init(isolate, &state);

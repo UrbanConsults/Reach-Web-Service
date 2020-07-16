@@ -30,6 +30,7 @@ export {
 } from "./files.ts";
 export type { OpenOptions } from "./files.ts";
 export { read, readSync, write, writeSync } from "./ops/io.ts";
+export { watchRWS, sendRWS } from "./ops/rws_server.ts";
 export { watchFs } from "./ops/fs_events.ts";
 export type { FsEvent } from "./ops/fs_events.ts";
 export { internalSymbol as internal } from "./internals.ts";
