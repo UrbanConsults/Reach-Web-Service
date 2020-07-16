@@ -20,11 +20,16 @@ export default () => ({
 
         }}
     ],
+    channel_listeners: {
+        "g-forms": () => {
+
+        }
+    },
     permissions: {
         "can_view_something": {title: "Some view", desc: "Something specific goes here"},
         "can_edit_own_posts": {title: "Edit Own Posts", desc: "Allows the user to edit their own posts"}
     },
-    template_hooks: {
+    nested_routes: {
         "main-page": {args: ["template:string"]}
     },
     components: {
@@ -32,9 +37,12 @@ export default () => ({
             title: "Gravity Forms Form",
             description: "Display a gravity form",
             options: async () => {
+                const options = await RWS.getOptions({});
+                await RWS.saveOptions({});
                 return `<div></div>`;
             },
             render: async (args) => {
+                const options = await RWS.getOptions();
                 return `<div>${args.id}</div>`;
             }
         }
@@ -65,3 +73,25 @@ export default () => ({
         }
     }
 })
+
+
+/*
+example.com
+
+/ page-builder-app
+/about-us about-us-app
+/forum forum-app
+
+404
+500
+403
+
+/ page-builder-app
+/this header-footer 
+    main-template
+    [
+        / page-builder-app 
+        /about-us about-us-app
+        /forum [stock-ticker, forum-app, something-else]
+    ]
+*/

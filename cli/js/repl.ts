@@ -125,6 +125,7 @@ export async function replLoop(): Promise<void> {
   replLog(`Deno ${version.deno}`);
   replLog("exit using ctrl+d or close()");
 
+  /*
   while (true) {
     if (isCloseCalled()) {
       quitRepl(0);
@@ -174,4 +175,6 @@ export async function replLoop(): Promise<void> {
       }
     }
   }
+  */
+
 }
