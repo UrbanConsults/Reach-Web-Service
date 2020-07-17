@@ -27,7 +27,7 @@ use std::task::Context;
 use std::task::Poll;
 use tokio::sync::Mutex as AsyncMutex;
 use url::Url;
-use ops::rws_server;
+// use ops::rws_server;
 
 /// Events that are sent to host from child
 /// worker.
@@ -268,7 +268,7 @@ impl MainWorker {
       ops::net::init(isolate, &state);
       ops::tls::init(isolate, &state);
       ops::os::init(isolate, &state);
-      rws_server::init(isolate, &state);
+      // rws_server::init(isolate, &state);
       ops::permissions::init(isolate, &state);
       ops::process::init(isolate, &state);
       ops::random::init(isolate, &state);

@@ -14,7 +14,7 @@ pub mod errors;
 pub mod fetch;
 pub mod fs;
 pub mod fs_events;
-pub mod rws_server;
+// pub mod rws_server;
 pub mod idna;
 pub mod io;
 pub mod net;

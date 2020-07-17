@@ -1,18 +1,16 @@
 # Copyright 2018-2020 the Deno authors. All rights reserved. MIT license.
 
 [package]
-name = "deno"
+name = "deno_cli"
 version = "1.2.0"
 license = "MIT"
 authors = ["the Deno authors"]
 edition = "2018"
 description = "Provides the deno executable"
 repository = "https://github.com/denoland/deno"
-default-run = "deno"
 
-[[bin]]
-name = "deno"
-path = "main.rs"
+[lib]
+path = "lib.rs"
 
 [build-dependencies]
 deno_core = { path = "../core", version = "0.49.0" }
@@ -64,11 +62,6 @@ walkdir = "2.3.1"
 warp = "0.2.3"
 semver-parser = "0.9.0"
 uuid = { version = "0.8.1", features = ["v4"] }
-actix-rt = "1.1.1"
-actix-web = "2.0.0"
-actix-files = "0.2.2"
-actix-web-actors = "2.0.0"
-actix = "0.9.0"
 
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.8", features = ["knownfolders", "objbase", "shlobj",

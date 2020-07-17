@@ -1,10 +1,9 @@
 [workspace]
 members = [
+  "rws",
   "cli",
   "core",
-  "deno_typescript",
-  "test_plugin",
-  "test_util",
+  "deno_typescript"
 ]
 exclude = [
   "std/hash/_wasm"
