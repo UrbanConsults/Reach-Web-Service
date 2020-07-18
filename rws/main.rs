@@ -53,7 +53,7 @@ use log::Record;
 use std::env;
 use std::io::Read;
 use std::io::Write;
-use std::path::PathBuf;
+use std::path::{ PathBuf, Path };
 use std::{rc::Rc, pin::Pin, cell::RefCell, time::Duration, thread};
 use deno_cli::{colors, upgrade::upgrade_command};
 use url::Url;
@@ -65,6 +65,8 @@ use actix_web::*;
 use futures::{StreamExt};
 
 mod control_panel;
+mod typescript_watcher;
+use typescript_watcher::start_watcher;
 
 static LOGGER: Logger = Logger;
 
@@ -321,12 +323,12 @@ async fn main_handler(
   if bytes.len() > 0 {
       println!("Req bytes: {:?}", bytes);
   }
-  
+
   actix_web::HttpResponse::Ok()
   .content_type("text/html")
   .body("<h2>hello</h2>")
   */
-  
+
   let mut sender = THREAD_CHANNEL.with(|channel| {
     Rc::clone(channel)
   });
@@ -368,7 +370,7 @@ impl<T> SuperUnsafeCell<T> {
   }
 }
 
-//tokio::task::JoinHandle<Result<(), ErrBox>> 
+//tokio::task::JoinHandle<Result<(), ErrBox>>
 
 fn new_js_context() -> tokio::task::JoinHandle<Result<(), ErrBox>> {
 /*
@@ -392,7 +394,7 @@ fn new_js_context() -> tokio::task::JoinHandle<Result<(), ErrBox>> {
     let mut flags = deno_cli::flags::flags_from_vec(args);
 
     flags.subcommand = DenoSubcommand::Repl;
-  
+
     let main_module = ModuleSpecifier::resolve_url_or_path("./__$deno$eval.ts").unwrap();
     let global_state = GlobalState::new(flags)?;
     let mut worker = MainWorker::create(global_state, main_module.clone())?;
@@ -426,7 +428,7 @@ fn new_js_context() -> tokio::task::JoinHandle<Result<(), ErrBox>> {
     worker.execute("window.dispatchEvent(new Event('load'))")?;
     (&mut *worker).await?;
     worker.execute("window.dispatchEvent(new Event('unload'))")?;
-    
+
     Ok(())
   })
 }
@@ -454,7 +456,7 @@ pub fn main() {
   };
   log::set_max_level(log_level.to_level_filter());
 
-  thread::spawn(control_panel::server);
+  start_watcher();
 
   let mut single_rt = Builder::new()
   .basic_scheduler()
