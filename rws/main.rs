@@ -66,7 +66,7 @@ use futures::{StreamExt};
 
 mod control_panel;
 mod typescript_watcher;
-use typescript_watcher::start_watcher;
+use typescript_watcher::start_tsc_watcher;
 
 static LOGGER: Logger = Logger;
 
@@ -456,7 +456,6 @@ pub fn main() {
   };
   log::set_max_level(log_level.to_level_filter());
 
-  start_watcher();
 
   let mut single_rt = Builder::new()
   .basic_scheduler()
@@ -468,6 +467,9 @@ pub fn main() {
   let system_fut = actix_rt::System::run_in_tokio("main", &local);
   local.block_on(&mut single_rt, async {
     tokio::task::spawn_local(system_fut);
+
+    start_tsc_watcher("control-panel".to_owned());
+    start_tsc_watcher("example-app".to_owned());
 
     let _ = actix_web::HttpServer::new(|| {
         // actix_web::App::new().service(actix_web::web::resource("/").to(|| async { "<h1>Hello world!</h1>" }))
