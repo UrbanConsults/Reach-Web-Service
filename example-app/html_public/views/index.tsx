@@ -1,5 +1,4 @@
 import * as React from "react";
-import { resetWarningCache } from "prop-types";
 
 export default async (head, token) => {
 

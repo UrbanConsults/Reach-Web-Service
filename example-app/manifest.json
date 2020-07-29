@@ -1,0 +1,23 @@
+{
+    "api": 1, // Module API version
+    "name": "my-app",
+    "version": "0.0.1",
+    "author": {
+        "name": "Billy Joel",
+        "company": "Piano Man, Inc",
+        "email": "something@something.com"
+    },
+    "render_type": "single_page", // single_page || multi_page || inline || control_panel
+    "license": "MIT",
+    "git": "github.com/account/repo.git",
+    "native_dependencies": {
+        "rws-db": 1 // API version
+    },
+    "permissions": {
+        "can_view_something": {"title": "Some view", "desc": "Something specific goes here"},
+        "can_edit_own_posts": {"title": "Edit Own Posts", "desc": "Allows the user to edit their own posts"}
+    },
+    "nested_routes": {
+        "main-page": {"args": ["template:string"]}
+    }
+}
