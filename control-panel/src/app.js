@@ -1,5 +1,7 @@
 requirejs.config({
     paths: {
+        "fb::react": "node_modules/fb::react/index",
+        "./component/page/home": "/component/page/home",
         "carbon-components": "libs/carbon-components/index",
         "carbon-components-react": "libs/carbon-components-react/index",
         "carbon-icons": "libs/carbon-icons/index",

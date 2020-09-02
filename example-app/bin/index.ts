@@ -1,4 +1,3 @@
-
 export default [
     (rws: any, db: any, fs: any, mail: any, elasticSearch: any) => { // install
         
@@ -24,7 +23,7 @@ export default [
             }
         });
 
-        rws.addAction("action_name", async () => {
+        rws.addAction("route", async (headers, other, args) => {
 
         }, 10);
 
@@ -130,7 +129,6 @@ export default [
 
             // app index usage 
             // compIndex.entityType
-            // *.compIndex should work to get any entity type for a given index
             // let users = await db.select(["id", "or", "other", "components"]).fromIndex("user-id.users").find(["=", "login@gmail.com"], {limit: 1});
             let users = await db.select(["id", "or", "other", "components"]).from("users").all({limit: 1});
             users = await db.select(["id", "or", "other", "components"]).from("users").find(["=", "entity ID"], {limit: 1});
@@ -285,6 +283,16 @@ example.com
 404
 500
 403
+
+sockets for ipc
+one socket per module per deno (real) thread
+https://crates.io/crates/parity-tokio-ipc
+
+/about-us spa
+/about-us/buy-our-shit spa
+
+/forum mpa
+/forum/page/1
 
 / page-builder-app
 /this header-footer 
